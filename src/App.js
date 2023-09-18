@@ -40,7 +40,7 @@ function App() {
   // Function to save a task (both create and update)
   const handleTaskSave = async (newTask) => {
     try {
-      const isTaskPresent = tasks.find((task) => task.ID == newTask.ID);
+      const isTaskPresent = tasks.find((task) => task.ID === newTask.ID);
       if (isTaskPresent) {
         // Edit existing task
         console.log("if")
