@@ -12,7 +12,7 @@ function App() {
   // Function to fetch tasks from the backend
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/tasks');
+      const response = await axios.get('https://scheduling-app-backend-production.up.railway.app/tasks');
       setTasks(response.data);
       console.log(response.data)
     } catch (error) {
@@ -28,7 +28,7 @@ function App() {
   const handleTaskDelete = async (task) => {
     try {
       console.log(task)
-      await axios.delete(`http://localhost:5000/tasks/${task.ID}`);
+      await axios.delete(`https://scheduling-app-backend-production.up.railway.app/tasks/${task.ID}`);
       setTasks(tasks.filter((task) => task.ID !== task.ID));
       setSelectedTask(null);
     } catch (error) {
@@ -44,11 +44,11 @@ function App() {
       if (isTaskPresent) {
         // Edit existing task
         console.log("if")
-        await axios.put(`http://localhost:5000/tasks/${newTask.ID}`, newTask);
+        await axios.put(`https://scheduling-app-backend-production.up.railway.app/tasks/${newTask.ID}`, newTask);
         setTasks(tasks.map((task) => (task.ID === newTask.ID ? newTask : task)));
       } else {
        // Add new task
-       const response = await axios.post('http://localhost:5000/task', newTask);
+       const response = await axios.post('https://scheduling-app-backend-production.up.railway.app/task', newTask);
        // Assuming your backend returns 'ID' for the new task
        newTask.ID = response.data.ID;
        setTasks([...tasks, newTask]);
